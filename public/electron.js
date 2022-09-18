@@ -5,12 +5,17 @@ const isDev = require('electron-is-dev');
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1920,
-        height: 1080,
+        width: 860,
+        height: 700,
         webPreferences: {
             nodeIntegration: true
         }
     });
+
+    win.once('ready-to-show', () => {
+        win.maximize();
+    })
+    
     win.loadURL(
         isDev
             ? 'http://localhost:3000'

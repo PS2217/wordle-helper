@@ -4,8 +4,8 @@ import './Header.css';
 
 const Header = props => {
     return (
-        <header class="header">
-            <h1><span class="green">W</span>ordle <span class="yellow">H</span>elper</h1>
+        <header className="header">
+            <h1><span className="green">W</span>ordle <span className="yellow">H</span>elper</h1>
         </header>
     );
 };

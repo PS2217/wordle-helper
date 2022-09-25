@@ -6,7 +6,7 @@ export const validate = (state, target, value) => {
     let yellowIdx;
     let greyIdx;
     switch(target) {
-        case "Green":
+        case "green":
             yellowIdx = yellow.indexOf(value);
             if (yellowIdx !== -1) {
                 yellow.splice(yellowIdx, 1);
@@ -22,7 +22,7 @@ export const validate = (state, target, value) => {
             return value;
         // END CASE Green
 
-        case "Yellow":
+        case "yellow":
             if(grey.includes(lastChar)) {
                 return state.yellow;
             }
@@ -32,7 +32,7 @@ export const validate = (state, target, value) => {
 
         // can't input multiple letters in grey
         // validate with yellow and greens
-        case "Grey":
+        case "grey":
             if (yellow.includes(lastChar)) {
                 return state.grey;
             } 

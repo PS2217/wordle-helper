@@ -17,83 +17,21 @@ const initialInputValues = {
 };
 
 const inputReducer = (state, action) => {
-    switch (action.type) {
-        case "G1":
-            return {
-                ...state,
-                green1: action.val
-            };
-        case "G2":
-            return {
-                ...state,
-                green2: action.val
-            };
-        case "G3":
-            return {
-                ...state,
-                green3: action.val
-            };
-        case "G4":
-            return {
-                ...state,
-                green4: action.val
-            };
-        case "G5":
-            return {
-                ...state,
-                green5: action.val
-            };
-        case "Yellow":
-            return {
-                ...state,
-                yellow: action.val
-            };
-        case "Grey":
-            return {
-                ...state,
-                grey: action.val
-            };
-        default:
-            return state;
-    }
+    const newState = { ...state};
+    newState[action.type] = action.val;
+    return newState;
 };
 
 function App() {
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);
 
-    const g1Handler = (value) => {
-        dispatch({ type: "G1", val: validate(inputState, "Green", value) });
-    };
+    const greenHandler = (index, value) => dispatch({ type: `green${index}`, val: validate(inputState, "green", value)});
 
-    const g2Handler = (value) => {
-        dispatch({ type: "G2", val: validate(inputState, "Green", value) });
-    };
-
-    const g3Handler = (value) => {
-        dispatch({ type: "G3", val: validate(inputState, "Green", value) });
-    };
-
-    const g4Handler = (value) => {
-        dispatch({ type: "G4", val: validate(inputState, "Green", value) });
-    };
-
-    const g5Handler = (value) => {
-        dispatch({ type: "G5", val: validate(inputState, "Green", value) });
-    };
-
-    const yellowHandler = (value, isDelete) => {
+    const YGHandler = (color, value, isDelete) => {
         if (isDelete) {
-            dispatch({ type: "Yellow", val: value });
+            dispatch({ type: color, val: value });
         } else {
-            dispatch({ type: "Yellow", val: validate(inputState, "Yellow", value) });
-        }
-    };
-
-    const greyHandler = (value, isDelete) => {
-        if (isDelete) {
-            dispatch({ type: "Grey", val: value });
-        } else {
-            dispatch({ type: "Grey", val: validate(inputState, "Grey", value) });
+            dispatch({ type: color, val: validate(inputState, color, value) });
         }
     };
 
@@ -102,36 +40,16 @@ function App() {
             <Header />
             <div className = "green-letters">
                 <Label text="green" />
-                <Input
-                    element = "ShortInput"
-                    id = "green1"
-                    value={inputState.green1}
-                    inputHandler={g1Handler}
-                />
-                <Input
-                    element = "ShortInput"
-                    id = "green2"
-                    value={inputState.green2}
-                    inputHandler={g2Handler}
-                />
-                <Input
-                    element = "ShortInput"
-                    id = "green3"
-                    value={inputState.green3}
-                    inputHandler={g3Handler}
-                />
-                <Input
-                    element = "ShortInput"
-                    id = "green4"
-                    value={inputState.green4}
-                    inputHandler={g4Handler}
-                />
-                <Input
-                    element = "ShortInput"
-                    id = "green5"
-                    value={inputState.green5}
-                    inputHandler={g5Handler}
-                />
+                {Array.from([1,2,3,4,5]).map((i) => {
+                    const index = `green${i}`
+                    return <Input 
+                        key = {i}
+                        element = "ShortInput"
+                        id = {index}
+                        value = {inputState[index]}
+                        inputHandler = {(value) => greenHandler(i, value)}
+                    />;
+                })}
             </div>
             <div className = "yellow-letters">
                 <Label text="yellow" />
@@ -139,7 +57,7 @@ function App() {
                     element = "LongInput"
                     id = "yellow"
                     value={inputState.yellow}
-                    inputHandler={yellowHandler}
+                    inputHandler={(value, isDelete) => YGHandler("yellow", value, isDelete)}
                     max="5"
                 />
             </div>
@@ -149,7 +67,7 @@ function App() {
                     element = "LongInput"
                     id = "grey"
                     value={inputState.grey}
-                    inputHandler={greyHandler}
+                    inputHandler={(value, isDelete) => YGHandler("grey", value, isDelete)}
                     max="26"
                 />
             </div>

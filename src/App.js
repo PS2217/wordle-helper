@@ -17,9 +17,10 @@ const initialInputValues = {
 };
 
 const inputReducer = (state, action) => {
-    const newState = { ...state};
-    newState[action.type] = action.val;
-    return newState;
+    return {
+        ...state,
+        [action.type]: action.val
+    }
 };
 
 function App() {
@@ -40,16 +41,19 @@ function App() {
             <Header />
             <div className = "green-letters">
                 <Label text="green" />
-                {Array.from([1,2,3,4,5]).map((i) => {
-                    const index = `green${i}`
+                {Array.from({length: 5}).map((_ , i) => {
+                    const index = `green${i+1}`
+                    console.log(index);
                     return <Input 
                         key = {i}
                         element = "ShortInput"
                         id = {index}
                         value = {inputState[index]}
-                        inputHandler = {(value) => greenHandler(i, value)}
+                        inputHandler = {(value) => greenHandler(i + 1, value)}
                     />;
                 })}
+
+                
             </div>
             <div className = "yellow-letters">
                 <Label text="yellow" />

@@ -19,6 +19,7 @@ const initialInputValues = {
 const inputReducer = (state, action) => ({ ...state, [action.type]: action.val });
 
 function App() {
+
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);
 
     const greenHandler = (index, value) => dispatch({ type: `green${index}`, val: validate(inputState, "green", value)});

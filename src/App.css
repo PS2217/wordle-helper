@@ -21,3 +21,8 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.button-container {
+    text-align: center;
+    margin: 50px auto;
+}

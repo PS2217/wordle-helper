@@ -4,7 +4,9 @@ import './App.css';
 import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 import Label from './components/Label/Label';
+import Button from './components/Button/Button';
 import { validate } from './util/validateInputs';
+import { words } from './words';
 
 const initialInputValues = {
     green1: "",
@@ -16,14 +18,10 @@ const initialInputValues = {
     grey: "",
 };
 
-const inputReducer = (state, action) => {
-    return {
-        ...state,
-        [action.type]: action.val
-    }
-};
+const inputReducer = (state, action) => ({ ...state, [action.type]: action.val });
 
 function App() {
+
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);
 
     const greenHandler = (index, value) => dispatch({ type: `green${index}`, val: validate(inputState, "green", value)});
@@ -36,6 +34,17 @@ function App() {
         }
     };
 
+    const suggestButtonHandler = () => {
+        // filter words here
+
+    }
+
+    const resetButtonHandler = () => {
+        for(let key in initialInputValues) {
+            dispatch({type: key, val: initialInputValues[key]});
+        }
+    }
+
     return (
         <React.Fragment>
             <Header />
@@ -43,7 +52,6 @@ function App() {
                 <Label text="green" />
                 {Array.from({length: 5}).map((_ , i) => {
                     const index = `green${i+1}`
-                    console.log(index);
                     return <Input 
                         key = {i}
                         element = "ShortInput"
@@ -75,6 +83,12 @@ function App() {
                     max="26"
                 />
             </div>
+            
+            <div className='button-container'>
+                <Button name="Suggest" class="green-bg" buttonHandler={suggestButtonHandler} />
+                <Button name="Reset" class="yellow-bg" buttonHandler={resetButtonHandler} />
+            </div>
+            
         </React.Fragment>
     );
 }

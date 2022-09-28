@@ -16,12 +16,7 @@ const initialInputValues = {
     grey: "",
 };
 
-const inputReducer = (state, action) => {
-    return {
-        ...state,
-        [action.type]: action.val
-    }
-};
+const inputReducer = (state, action) => ({ ...state, [action.type]: action.val });
 
 function App() {
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);

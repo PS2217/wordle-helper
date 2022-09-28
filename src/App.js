@@ -7,7 +7,6 @@ import Label from './components/Label/Label';
 import Button from './components/Button/Button';
 import { validate } from './util/validateInputs';
 import { words } from './words';
-import { type } from '@testing-library/user-event/dist/type';
 
 const initialInputValues = {
     green1: "",

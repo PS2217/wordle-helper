@@ -1,0 +1,24 @@
+.green-bg {
+    background-color: #538D4E;
+}
+
+.yellow-bg {
+    background-color: #B59F3B;
+}
+
+.button {
+    width: 110px;
+    height: 30px;
+    display: inline-block;
+    margin: 0 100px;
+
+    border-radius: 2px;
+    color: white;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+    font-size: large;
+}
+
+button:hover {
+    background-color: #818384;
+    border-color: #818384;
+}

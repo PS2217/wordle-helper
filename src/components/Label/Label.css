@@ -1,0 +1,32 @@
+.label {
+    width: 120px;
+    height: 25px;
+
+    display: inline-block;
+    margin-right: 7px;
+    padding: 1px 2px;
+}
+
+.label p {
+    color: white;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+    font-size: large;
+    margin: 0;
+    text-align: center;
+    padding-top: 2.5px;
+}
+
+.green-bg {
+    background-color: #538D4E;
+    border: #538D4E 2px solid;
+}
+
+.yellow-bg {
+    background-color: #B59F3B;
+    border: #B59F3B 2px solid;
+}
+
+.grey-bg {
+    background-color: #818384;
+    border: #818384 2px solid;
+}

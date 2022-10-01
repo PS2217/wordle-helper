@@ -4,6 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+After importing this project, you have to run:
+
+### `npm install`
+
+This will install all modules listed as dependencies in `package.json`.
+
+________________________________________________
+
 In the project directory, you can run:
 
 ### `npm run dev`

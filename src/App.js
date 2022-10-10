@@ -5,6 +5,8 @@ import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 import Label from './components/Label/Label';
 import Button from './components/Button/Button';
+import Suggestion from './components/Suggestion/Suggestion';
+
 import { validate } from './util/validateInputs';
 import { words } from './words';
 
@@ -24,7 +26,7 @@ function App() {
 
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);
 
-    const [currentWords, setCurrentWords] = useState([]);
+    const [currentWords, setCurrentWords] = useState(words);
 
     const greenHandler = (index, value) => dispatch({ type: `green${index}`, val: validate(inputState, "green", value)});
 
@@ -172,10 +174,10 @@ function App() {
                 <Button name="Suggest" class="green-bg" buttonHandler={suggestButtonHandler} />
                 <Button name="Reset" class="yellow-bg" buttonHandler={resetButtonHandler} />
             </div>
-
-            <p className='green'>
-                {currentWords[0]}
-            </p>
+            
+            <div className='suggestion-container'>
+                <Suggestion words={currentWords} />
+            </div>
             
         </React.Fragment>
     );

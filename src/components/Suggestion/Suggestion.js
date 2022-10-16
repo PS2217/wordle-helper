@@ -7,9 +7,9 @@ const Suggestion = props => {
     return (
         <React.Fragment>
             <div className='box'>
-                {props.words.map(word => {
+                {props.words.map((word, index) => {
                     return (
-                        <div className='box-item'>
+                        <div key={index} className='box-item'>
                             <div className='box-text'>
                                 {word}
                             </div>

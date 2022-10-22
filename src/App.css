@@ -27,7 +27,7 @@
     margin: 50px auto;
 }
 
-.suggestion-container {
+.container {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -76,7 +76,35 @@
     padding-top: 6px;
 }
 
+.manual-container {
+    max-width: 800px;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.display-manual {
+    color: #B59F3B;
+    font-size: large;
+    text-decoration: underline;
+    text-align: left;
+}
+
+.display-manual:hover {
+    cursor: pointer;
+    color: #538D4E;
+}
+
 option:disabled {
     background-color: #818384;
     color: black;
+}
+
+#back-button {
+    position: absolute;
+    left: 80px;
+    top: 50px;
+}
+
+#back-button:hover {
+    cursor: pointer;
 }

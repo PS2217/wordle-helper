@@ -2,6 +2,8 @@
   "name": "wordle-helper",
   "version": "0.1.0",
   "private": true,
+  "author": "PS2217",
+  "description": "It is a helper for solving wordle game.",
   "productName": "Wordle Helper",
   "main": "public/electron.js",
   "homepage": "./",
@@ -26,7 +28,8 @@
     "dev": "concurrently -k \"npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
     "package": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
-    "publish": "electron-builder build --win --publish always"
+    "publish": "electron-builder build --win --publish always",
+    "build-Linux": "electron-builder build --linux AppImage"
   },
   "eslintConfig": {
     "extends": [

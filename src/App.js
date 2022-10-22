@@ -1,11 +1,14 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import './App.css';
 
+import backButton from './back-button.png';
+
 import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 import Label from './components/Label/Label';
 import Button from './components/Button/Button';
 import Suggestion from './components/Suggestion/Suggestion';
+import InstructionManual from './components/Manual/InstructionManual';
 
 import { validate } from './util/validateInputs';
 import { words } from './words';
@@ -27,6 +30,8 @@ function App() {
     const [inputState, dispatch] = useReducer(inputReducer, initialInputValues);
 
     const [currentWords, setCurrentWords] = useState(words);
+    
+    const [displayManual, setDisplayManual] = useState(false)
 
     const greenHandler = (index, value) => dispatch({ type: `green${index}`, val: validate(inputState, "green", value)});
 
@@ -191,6 +196,20 @@ function App() {
         return vowels;
     }
 
+    function countDuplicates(word) {
+        let duplicates = 1;
+
+        let wordObj = {};
+
+        for (let letter of word) {
+            wordObj[letter] = (wordObj[letter] || 0) + 1;
+            if (wordObj[letter] > duplicates) {
+                duplicates = wordObj[letter];
+            }
+        }
+        return (duplicates === 1 ? duplicates - 1 : duplicates);
+    }
+
     const dropdownChangeHandler = (event) => {
         switch (event.target.value) {
             case '0':
@@ -224,7 +243,19 @@ function App() {
                     }
                 });
                 reRenderCurrentWords();
-                break;        
+                break;
+            case '4':
+                currentWords.sort(function(a,b) {
+                    if (countDuplicates(a) < countDuplicates(b)) {
+                        return -1;
+                    } else if(countDuplicates(a) > countDuplicates(b)) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                reRenderCurrentWords();
+                break;
             default:
                 break;
         }
@@ -233,6 +264,8 @@ function App() {
     return (
         <React.Fragment>
             <Header />
+            {!displayManual && 
+            <React.Fragment>
             <div className = "green-letters">
                 <Label text="green" />
                 {Array.from({length: 5}).map((_ , i) => {
@@ -274,6 +307,10 @@ function App() {
                 <Button name="Reset" class="yellow-bg" buttonHandler={resetButtonHandler} />
             </div>
 
+            <div className='manual-container'>
+                <p className='display-manual' onClick={function() {setDisplayManual(true)}}>How does this helper work?</p>
+            </div>
+
             <div className="dropdown-container">
                 <div className='custom-dropdown'>
                     <div className='word-list_info'>Suggestions ({currentWords.length} words)</div>
@@ -283,14 +320,22 @@ function App() {
                         <option value='1' className='select-items'>Descending</option>
                         <option value='2' className='select-items'>Most vowels</option>
                         <option value='3' className='select-items'>Most consonants</option>
+                        <option value='4' className='select-items'>Unique letters</option>
                     </select>
                 </div>
             </div>
             
-            <div className='suggestion-container'>
+            <div className='container'>
                 <Suggestion words={currentWords} />
             </div>
-            
+            </React.Fragment>}
+            {displayManual && 
+            <React.Fragment>
+                <img src={backButton} alt="back" id='back-button' onClick={function() {setDisplayManual(false)}} />
+                <div className='container'>
+                    <InstructionManual />
+                </div>
+            </React.Fragment>}
         </React.Fragment>
     );
 }

@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+    margin: 50px auto;
+}
+
+header h1 {
+    color: white;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+}
+
+header h2 {
+    color: white;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+}
+
+p {
+    color: white;
+    text-align: center;
+    font-weight: 550;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+}
+
+.green {
+    color: #538D4E;
+}
+
+.yellow {
+    color: #B59F3B;
+}

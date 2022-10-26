@@ -1,7 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Wordle Helper",
+  "name": "Wordle Helper PS2217",
   "icons": [
+    "./assets/icons/Wordle_Helper_Logo.png"
   ],
   "start_url": ".",
   "display": "standalone",

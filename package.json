@@ -1,12 +1,14 @@
 {
   "name": "wordle-helper",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
-  "author": "PS2217",
+  "author": "PS2217<mayphyuoo.may@gmail.com>",
+  "email": "mayphyuoo.may@gmail.com",
   "description": "It is a helper for solving wordle game.",
   "productName": "Wordle Helper",
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "https://github.com/PS2217/wordle-helper",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -27,9 +29,10 @@
     "start-electron": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
     "dev": "concurrently -k \"npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
-    "package": "electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
-    "publish": "electron-builder build --win --publish always",
-    "build-Linux": "electron-builder build --linux AppImage"
+    "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "dist:windows": "electron-builder --dir",
+    "dist:linux": "electron-builder --dir --linux",
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -54,32 +57,23 @@
     "electron-builder": "^23.3.3"
   },
   "build": {
-    "mac": {
-      "publish": {
-        "provider": "github",
-        "owner": "PS2217",
-        "repo": "wordle-helper",
-        "private": true,
-        "token": ""
-      }
+    "icon": "./assets/icons/Wordle_Helper_Logo.png",
+    "appId": "wordle.helper.electron",
+    "productName": "Wordle Helper",
+    "directories": {
+        "buildResources": "public"
+    },
+    "linux": {
+        "icon": "./assets/icons/",
+        "target": ["deb", "AppImage"]
     },
     "win": {
-      "publish": {
-        "provider": "github",
-        "owner": "PS2217",
-        "repo": "wordle-helper",
-        "private": true,
-        "token": ""
-      }
+        "target": "nsis"
     },
+    "deb": {},
     "files": [
       "build/**/*",
       "node_modules/**/*"
-    ],
-    "publish": {
-      "provider": "github",
-      "private": true,
-      "owner": "PS2217"
-    }
+    ]
   }
 }

@@ -7,6 +7,7 @@
   "description": "It is a helper for solving wordle game.",
   "productName": "Wordle Helper",
   "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -62,7 +63,8 @@
         "buildResources": "public"
     },
     "linux": {
-        "target": ["deb", "AppImage"]
+        "category": "Dev",
+        "target": ["AppImage"]
     },
     "win": {
         "target": "nsis"

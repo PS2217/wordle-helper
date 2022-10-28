@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This can be built for native applications with the power of electron. ⚛️
 
 ## Available Scripts
 
@@ -33,3 +34,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+### `npm run dist`
+
+This is the script for electron-build command.
+Run this command in order to get executable file for windows or linux OS. if this command is run on Linux, it will produce Linux AppImage and if on windows, .exe file will be produced.
